@@ -26,4 +26,10 @@ class Kele
 
     response = Kele.get(url, headers: { "authorization" => @auth_token })
   end
+
+  def get_mentor_availability
+    url = "#{@endpoint}/mentors/539470/student_availability"
+
+    response = Kele.get(url, headers: { "authorization" => @auth_token })
+  end
 end
