@@ -1,7 +1,9 @@
 require 'httparty'
+require 'roadmap'
 
 class Kele
   include HTTParty
+  include Roadmap
 
   def initialize(email, password)
     @endpoint = 'https://www.bloc.io/api/v1'
@@ -23,13 +25,15 @@ class Kele
 
   def get_me
     url = "#{@endpoint}/users/me"
-
-    response = Kele.get(url, headers: { "authorization" => @auth_token })
+    response(url)
   end
 
   def get_mentor_availability
     url = "#{@endpoint}/mentors/539470/student_availability"
+    response(url)
+  end
 
-    response = Kele.get(url, headers: { "authorization" => @auth_token })
+  def response(url)
+    Kele.get(url, headers: { "authorization" => @auth_token })
   end
 end
